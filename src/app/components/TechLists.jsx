@@ -1,29 +1,27 @@
-import Marquee from "./Marquee";
-import { skills } from "@/data/data";
+import { skillGroups } from "@/data/data";
 
 export default function TechLists() {
     return (
-        <div className="mt-10">
-             <h2 className="text-xl font-medium before:content-['>'] before:mr-1">Tech Stack</h2>
-            <Marquee duration="10s">
-                <div className="flex gap-8 mt-4">
-                    {[...skills, ...skills].map((skill, index) => (
-                        <div
-                            key={index}
-                            className="flex flex-col items-center gap-2 w-[80px] p-2"
-                        >
-                            <div className="border-2 p-2 border-base-content/20 shadow-md rounded-sm dark:bg-base-content">
-                                <img
-                                    src={`${skill.icon}`}
-                                    className="w-10 h-10"
-                                    alt={`${skill.alt}`}
-                                />
-                            </div>
-                            <span className="text-sm">{skill.name}</span>
-                        </div>
-                    ))}
-                </div>
-            </Marquee>
-        </div>
+        <section className="section-block scroll-mt-24" id="skills" aria-labelledby="skills-heading">
+            <h2 id="skills-heading" className="section-title">
+                Technical Skills
+            </h2>
+            <div className="grid gap-3 sm:grid-cols-2">
+                {skillGroups.map((group) => (
+                    <article key={group.title} className="rounded-2xl border border-base-content/15 p-5 last:sm:col-span-2">
+                        <h3 className="text-sm font-bold uppercase tracking-wider text-base-content/55">
+                            {group.title}
+                        </h3>
+                        <ul className="mt-3 flex flex-wrap gap-2" aria-label={`${group.title} skills`}>
+                            {group.items.map((skill) => (
+                                <li key={skill} className="rounded-lg bg-base-200 px-3 py-1.5 text-sm font-medium">
+                                    {skill}
+                                </li>
+                            ))}
+                        </ul>
+                    </article>
+                ))}
+            </div>
+        </section>
     );
 }

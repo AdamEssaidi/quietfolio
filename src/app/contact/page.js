@@ -1,71 +1,66 @@
-import React from "react";
-import { forms , seo } from "@/data/data";
+import { about, socials } from "@/data/data";
 
 export const metadata = {
-    title: `Contact Me | ${seo.title}`,
-    description: "Get in touch with me to discuss projects, collaborations, or just to say hello.",
-    keywords: "contact, get in touch, collaboration, email, message, web developer"
+    title: "Contact",
+    description: "Contact Adam Essaidi about full-stack software engineering roles, projects, and collaborations.",
 };
 
-function Contact() {
+const contactMethods = [
+    {
+        title: "Email",
+        value: about.email,
+        href: socials.email,
+        external: false,
+        description: "The best way to reach me for a project or professional opportunity.",
+    },
+    {
+        title: "LinkedIn",
+        value: "linkedin.com/in/adam-essaidi",
+        href: socials.linkedin,
+        external: true,
+        description: "Connect with me and follow my professional experience.",
+    },
+];
+
+export default function ContactPage() {
     return (
-        <>
-            <div className="md:w-[700px] w-[100%] mt-5 p-4">
-                <main className="flex flex-col gap-2">
-                    <h1 className="text-xl font-medium before:content-['>'] before:mr-1">
-                        Contact Me
-                    </h1>
-                    <div className="p-1">
-                        <form
-                            action={forms.formspreeUrl}
-                            method="POST"
-                            className="flex flex-col"
-                        >
-                            <div>
-                                <div>
-                                    <span className="uppercase text-sm text-base-content/80 font-bold">
-                                        Full Name
-                                    </span>
-                                    <input
-                                        className="w-full mt-1 p-3 rounded-lg focus:outline-none border border-base-content text-base-content/80 focus:shadow-outline"
-                                        type="text"
-                                        name="name"
-                                        required
-                                    />
-                                </div>
-                                <div className="mt-3">
-                                    <span className="uppercase text-sm text-base-content/80 font-bold">
-                                        Email
-                                    </span>
-                                    <input
-                                        className="w-full mt-1 p-3 rounded-lg focus:outline-none border border-base-content text-base-content/80 focus:shadow-outline"
-                                        type="email"
-                                        name="email"
-                                        required
-                                    />
-                                </div>
-                                <div className="mt-3">
-                                    <span className="uppercase text-sm text-base-content/80 font-bold">
-                                        Message
-                                    </span>
-                                    <textarea
-                                        className="w-full mt-1 p-3 rounded-lg focus:outline-none border border-base-content text-base-content/80 focus:shadow-outline"
-                                        name="message"
-                                        required
-                                    ></textarea>
-                                </div>
-                                <div className="mt-2">
-                                    <button className="uppercase text-sm font-bold tracking-wide bg-base-content text-base-100 p-3 cursor-pointer hover:bg-base-content/95 rounded-lg w-full focus:outline-none focus:shadow-outline">
-                                        Send Message
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </main>
+        <main id="main-content" className="py-10 sm:py-14">
+            <div className="max-w-2xl">
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-base-content/50">Contact</p>
+                <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">Let&apos;s build something useful.</h1>
+                <p className="mt-4 leading-7 text-base-content/70">
+                    I am open to conversations about software engineering roles, full-stack projects, and thoughtful collaborations. Choose the channel that works best for you.
+                </p>
+                <p className="mt-3 flex items-center gap-2 text-sm text-base-content/55">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" className="size-4" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+                        <circle cx="12" cy="10" r="3" />
+                    </svg>
+                    Based in {about.location}
+                </p>
             </div>
-        </>
+
+            <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                {contactMethods.map((method) => (
+                    <a
+                        key={method.title}
+                        href={method.href}
+                        target={method.external ? "_blank" : undefined}
+                        rel={method.external ? "noopener noreferrer" : undefined}
+                        className="group rounded-2xl border border-base-content/15 p-5 transition-colors hover:border-base-content/40 hover:bg-base-200/40"
+                    >
+                        <div className="flex items-start justify-between gap-4">
+                            <h2 className="text-lg font-bold">{method.title}</h2>
+                            <svg viewBox="0 0 24 24" aria-hidden="true" className="size-5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" fill="none" stroke="currentColor" strokeWidth="2">
+                                <path d="M7 17 17 7" />
+                                <path d="M7 7h10v10" />
+                            </svg>
+                        </div>
+                        <p className="mt-3 text-sm leading-6 text-base-content/65">{method.description}</p>
+                        <p className="mt-4 break-words text-sm font-semibold">{method.value}</p>
+                    </a>
+                ))}
+            </div>
+        </main>
     );
 }
-
-export default Contact;

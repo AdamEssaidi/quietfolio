@@ -1,111 +1,96 @@
-import { socials } from "@/data/data";
-import { about } from "@/data/data";
+import { about, socials } from "@/data/data";
+
+const socialLinks = [
+    {
+        label: "GitHub",
+        href: socials.github,
+        external: true,
+        icon: (
+            <svg viewBox="0 0 24 24" aria-hidden="true" className="size-4" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5A4 4 0 0 0 9 18v4" />
+                <path d="M9 18c-4.51 2-5-2-7-2" />
+            </svg>
+        ),
+    },
+    {
+        label: "LinkedIn",
+        href: socials.linkedin,
+        external: true,
+        icon: (
+            <svg viewBox="0 0 24 24" aria-hidden="true" className="size-4" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6Z" />
+                <path d="M2 9h4v12H2z" />
+                <circle cx="4" cy="4" r="2" />
+            </svg>
+        ),
+    },
+    {
+        label: "Email",
+        href: socials.email,
+        external: false,
+        icon: (
+            <svg viewBox="0 0 24 24" aria-hidden="true" className="size-4" fill="none" stroke="currentColor" strokeWidth="2">
+                <rect width="20" height="16" x="2" y="4" rx="2" />
+                <path d="m22 7-8.97 5.7a1.9 1.9 0 0 1-2.06 0L2 7" />
+            </svg>
+        ),
+    },
+];
 
 export default function Profile() {
     return (
-        <>
-            <img
-                src="https://i.imgur.com/zjGPTRC.jpeg"
-                className="w-[70px] h-[70px] rounded-[50%] object-cover object-center"
-                alt={`${about.name}'s profile`}
-            />
-            <div className="flex gap-[5px] items-center mt-1">
-                <h1 className="text-2xl font-semibold">{about.name}</h1>
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="24px"
-                    viewBox="0 -960 960 960"
-                    width="24px"
-                    fill="currentColor"
+        <section className="pt-8 sm:pt-12" aria-labelledby="profile-name">
+            <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
+                <div
+                    role="img"
+                    aria-label="Adam Essaidi monogram"
+                    className="relative grid size-24 shrink-0 place-items-center overflow-hidden rounded-3xl bg-base-content text-base-100 shadow-sm ring-1 ring-base-content/10 sm:size-28"
                 >
-                    <path d="m344-60-76-128-144-32 14-148-98-112 98-112-14-148 144-32 76-128 136 58 136-58 76 128 144 32-14 148 98 112-98 112 14 148-144 32-76 128-136-58-136 58Zm94-278 226-226-56-58-170 170-86-84-56 56 142 142Z" />
-                </svg>
+                    <span aria-hidden="true" className="absolute inset-3 rounded-2xl border border-base-100/20" />
+                    <span aria-hidden="true" className="absolute -right-5 -top-5 size-16 rounded-full border border-base-100/15" />
+                    <span aria-hidden="true" className="relative text-2xl font-black tracking-[-0.08em] sm:text-3xl">
+                        AE
+                    </span>
+                    <span aria-hidden="true" className="absolute bottom-4 h-px w-8 bg-base-100/30" />
+                </div>
+                <div className="min-w-0">
+                    <p className="mb-1 text-sm font-medium uppercase tracking-[0.18em] text-base-content/55">
+                        {about.brand}
+                    </p>
+                    <h1 id="profile-name" className="text-3xl font-bold tracking-tight sm:text-4xl">
+                        {about.name}
+                    </h1>
+                    <p className="mt-2 text-base font-medium text-base-content/80 sm:text-lg">
+                        {about.role}
+                    </p>
+                    <p className="mt-1 flex items-center gap-1.5 text-sm text-base-content/60">
+                        <svg viewBox="0 0 24 24" aria-hidden="true" className="size-4" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+                            <circle cx="12" cy="10" r="3" />
+                        </svg>
+                        {about.location}
+                    </p>
+                    <p className="mt-3 max-w-xl text-sm leading-6 text-base-content/65 sm:text-base">
+                        {about.headline}
+                    </p>
+                </div>
             </div>
-            <div className="mt-1.5 flex items-center gap-1">
-                <p className="text-base text-base-content/60">{about.role} // </p>
-                <p className="underline cursor-pointer text-base-content/90">
-                    Solo
-                </p>
+
+            <div className="mt-6 flex flex-wrap gap-2" aria-label="Professional profiles">
+                {socialLinks.map((social) => (
+                    <a
+                        key={social.label}
+                        href={social.href}
+                        target={social.external ? "_blank" : undefined}
+                        rel={social.external ? "noopener noreferrer" : undefined}
+                        className="inline-flex min-h-11 items-center gap-1.5 rounded-full border border-base-content/15 px-3 text-sm font-semibold transition-colors hover:border-base-content/40 hover:bg-base-200 sm:gap-2 sm:px-4"
+                    >
+                        {social.icon}
+                        {social.label}
+                        {social.external ? <span className="sr-only"> (opens in a new tab)</span> : null}
+                    </a>
+                ))}
             </div>
-            <div className="flex items-center mt-3 gap-3">
-                <a href={socials.instagram}>
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="lucide lucide-instagram-icon lucide-instagram cursor-pointer"
-                    >
-                        <rect
-                            width="20"
-                            height="20"
-                            x="2"
-                            y="2"
-                            rx="5"
-                            ry="5"
-                        />
-                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                        <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                    </svg>
-                </a>
-
-                <a href={socials.github}>
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="lucide lucide-github-icon lucide-github cursor-pointer"
-                    >
-                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                        <path d="M9 18c-4.51 2-5-2-7-2" />
-                    </svg>
-                </a>
-
-                <a href={socials.facebook}>
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="lucide lucide-facebook-icon lucide-facebook cursor-pointer"
-                    >
-                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-                    </svg>
-                </a>
-
-                <a href={socials.twitter}>
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="lucide lucide-twitter-icon lucide-twitter cursor-pointer"
-                    >
-                        <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
-                    </svg>
-                </a>
-            </div>
-        </>
+        </section>
     );
 }

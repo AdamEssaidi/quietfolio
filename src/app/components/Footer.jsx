@@ -1,19 +1,18 @@
+import Link from "next/link";
+import { about } from "@/data/data";
+
 export default function Footer() {
+    const currentYear = new Date().getFullYear();
+
     return (
-        <>
-            <div className="mt-20 p-4">
-                <p className="text-sm">© 2025. All rights reserved.</p>
-                <p className="text-xs">
-                    This site uses{" "}
-                    <a
-                        href="https://github.com/sachinbhujel/NextJS-Portfolio-Template"
-                        target="_blank"
-                        className="text-sm font-medium hover:underline"
-                    >
-                        NextJS Portfolio Template
-                    </a>{" "}
-                </p>
+        <footer className="mt-20 border-t border-base-content/10 py-8 text-sm text-base-content/55">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <p>© {currentYear} {about.name}.</p>
+                <div className="flex gap-4">
+                    <Link href="/projects" className="hover:text-base-content hover:underline">Projects</Link>
+                    <Link href="/contact" className="hover:text-base-content hover:underline">Contact</Link>
+                </div>
             </div>
-        </>
+        </footer>
     );
 }

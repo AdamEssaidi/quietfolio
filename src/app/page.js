@@ -1,21 +1,21 @@
+import About from "./components/About";
+import AdditionalDetails from "./components/AdditionalDetails";
+import Education from "./components/Education";
+import Experience from "./components/Experience";
+import Profile from "./components/Profile";
 import ProjectsList from "./components/ProjectsList";
 import TechLists from "./components/TechLists";
-import About from "./components/About";
-import Profile from "./components/Profile";
-import Experience from "./components/Experience";
 
 export default function Home() {
     return (
-        <>
-            <div>
-                <main className="mt-5 p-4">
-                    <Profile />
-                    <About />
-                    <ProjectsList />
-                    <TechLists />
-                    <Experience />
-                </main>
-            </div>
-        </>
+        <main id="main-content" className="pb-4">
+            <Profile />
+            <About />
+            <ProjectsList />
+            <Experience />
+            <TechLists />
+            <Education />
+            <AdditionalDetails />
+        </main>
     );
 }
